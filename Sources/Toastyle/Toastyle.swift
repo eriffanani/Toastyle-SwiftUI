@@ -3,12 +3,12 @@ import SwiftUI
 
 struct Toastyle: View {
     
-    var state: ToastState
+    var state: ToastyleState
     var text: String?
     @Binding var show: Bool
     @State private var visible: Bool = false
     
-    init(state: ToastState = .info, text: String? = nil, show: Binding<Bool>) {
+    init(state: ToastyleState = .info, text: String? = nil, show: Binding<Bool>) {
         self.state = state
         self.text = text
         self._show = show
@@ -62,7 +62,7 @@ struct Toastyle: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    private func alertIcon(state: ToastState) -> String {
+    private func alertIcon(state: ToastyleState) -> String {
         switch state {
         case .warning:
             return Icons.warning
@@ -75,11 +75,11 @@ struct Toastyle: View {
         }
     }
 
-    private func alertTextColor(state: ToastState) -> Color {
+    private func alertTextColor(state: ToastyleState) -> Color {
         return Color.black
     }
 
-    private func alertCardColor(state: ToastState) -> Color {
+    private func alertCardColor(state: ToastyleState) -> Color {
         switch state {
         case .failed:
             return Color.alertFailed
@@ -92,10 +92,6 @@ struct Toastyle: View {
         }
     }
     
-}
-
-enum ToastState {
-    case info, success, failed, warning
 }
 
 struct Toastyle_Previews: PreviewProvider {
