@@ -61,36 +61,37 @@ struct Toastyle: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-}
-
-func alertIcon(state: ToastState) -> String {
-    switch state {
-    case .warning:
-        return Icons.warning
-    case .failed:
-        return Icons.failed
-    case .success:
-        return Icons.success
-    default:
-        return Icons.info
+    
+    private func alertIcon(state: ToastState) -> String {
+        switch state {
+        case .warning:
+            return Icons.warning
+        case .failed:
+            return Icons.failed
+        case .success:
+            return Icons.success
+        default:
+            return Icons.info
+        }
     }
-}
 
-func alertTextColor(state: ToastState) -> Color {
-    return Color.black
-}
-
-func alertCardColor(state: ToastState) -> Color {
-    switch state {
-    case .failed:
-        return Color.alertFailed
-    case .warning:
-        return Color.alertWarning
-    case .success:
-        return Color.alertSuccess
-    default:
-        return Color.alertInfo
+    private func alertTextColor(state: ToastState) -> Color {
+        return Color.black
     }
+
+    private func alertCardColor(state: ToastState) -> Color {
+        switch state {
+        case .failed:
+            return Color.alertFailed
+        case .warning:
+            return Color.alertWarning
+        case .success:
+            return Color.alertSuccess
+        default:
+            return Color.alertInfo
+        }
+    }
+    
 }
 
 enum ToastState {
