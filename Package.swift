@@ -24,10 +24,7 @@ let package = Package(
         .target(
             name: "Toastyle",
             dependencies: [],
-            path: "Sources"
-        ),
-        .testTarget(
-            name: "ToastyleTests",
-            dependencies: ["Toastyle"]),
+            path: "Sources/Toastyle"
+        )
     ]
 )
