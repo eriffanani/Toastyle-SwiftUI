@@ -6,6 +6,7 @@ struct Toastyle: View {
     var state: ToastState
     var text: String?
     @Binding var show: Bool
+    @State private var visible: Bool = false
     
     init(state: ToastState = .info, text: String? = nil, show: Binding<Bool>) {
         self.state = state
@@ -16,38 +17,44 @@ struct Toastyle: View {
     var body: some View {
         VStack {
             Spacer()
-            if show {
-                ZStack {
-                    Capsule()
-                        .fill()
-                        .shadow(color: Color.shadow, radius: 2, y: 1.2)
-                        .foregroundColor(alertCardColor(state: state))
-                    HStack {
-                        Image(systemName: alertIcon(state: state))
-                            .font(Font.system(size: 18, weight: .semibold))
-                            .foregroundColor(alertTextColor(state: state))
-                        
-                        Text(text ?? "Default message")
-                            .foregroundColor(alertTextColor(state: state))
-                            .padding(.trailing, 4)
-                    }
-                    .padding(14)
-                    .padding(.horizontal, 6)
+            HStack {
+                HStack {
+                    Image(systemName: alertIcon(state: state))
+                        .font(Font.system(size: 18, weight: .semibold))
+                        .foregroundColor(alertTextColor(state: state))
+                    
+                    Text(text ?? "Default message")
+                        .foregroundColor(alertTextColor(state: state))
+                        .padding(.trailing, 4)
                 }
-                .fixedSize(horizontal: true, vertical: true)
-                .padding(.bottom, 16)
-                .animation(.easeInOut(duration: 0.2))
-                .transition(AnyTransition.opacity)
-                .onAppear {
+                .padding(14)
+                .padding(.horizontal, 6)
+            }
+            .background(
+                Capsule()
+                    .fill()
+                    .shadow(color: Color.shadow, radius: 2, y: 1.2)
+                    .foregroundColor(alertCardColor(state: state))
+            )
+            .padding(.bottom, 16)
+            .animation(.linear(duration: 0.3))
+            .onTapGesture {
+                withAnimation {
+                    visible = false
+                }
+                show = false
+            }
+            .opacity(visible ? 1 : 0)
+            .onChange(of: show) { mShow in
+                if !visible && mShow {
+                    withAnimation {
+                        visible = true
+                    }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         withAnimation {
-                            self.show = false
+                            visible = false
                         }
-                    }
-                }
-                .onTapGesture {
-                    withAnimation {
-                        self.show = false
+                        show = false
                     }
                 }
             }
