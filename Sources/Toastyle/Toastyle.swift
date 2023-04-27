@@ -9,7 +9,7 @@ public struct Toastyle: View {
     @Binding var show: Bool
     @State private var visible: Bool = false
     
-    init(state: ToastyleState = .info, text: String? = nil, show: Binding<Bool>) {
+    public init(state: ToastyleState = .info, text: String? = nil, show: Binding<Bool>) {
         self.state = state
         self.text = text
         self._show = show
