@@ -5,7 +5,7 @@
 //  Created by ok fits on 26/04/23.
 //
 
-struct Icons {
+public struct ToastyleIcon {
     
     static let info = "info.circle.fill"
     static let success = "checkmark.circle.fill"

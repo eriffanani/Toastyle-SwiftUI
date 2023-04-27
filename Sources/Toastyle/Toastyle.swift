@@ -65,13 +65,13 @@ struct Toastyle: View {
     private func alertIcon(state: ToastyleState) -> String {
         switch state {
         case .warning:
-            return Icons.warning
+            return ToastyleIcon.warning
         case .failed:
-            return Icons.failed
+            return ToastyleIcon.failed
         case .success:
-            return Icons.success
+            return ToastyleIcon.success
         default:
-            return Icons.info
+            return ToastyleIcon.info
         }
     }
 
@@ -98,7 +98,7 @@ struct Toastyle_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             
-            Toastyle(state: .info, show: .constant(true))
+            Toastyle(text: "Example", show: .constant(true))
             
         }
         .background(Color.gray.opacity(0.1))
