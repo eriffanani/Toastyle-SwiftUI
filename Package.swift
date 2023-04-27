@@ -23,7 +23,6 @@ let package = Package(
         .target(
             name: "Toastyle",
             dependencies: [],
-            path: "Sources/Toastyle",
             resources: [
                 .process("Resources")
             ]

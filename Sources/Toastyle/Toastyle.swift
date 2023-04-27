@@ -2,7 +2,7 @@
 import SwiftUI
 
 @available(iOS 14.0, OSX 11, *)
-struct Toastyle: View {
+public struct Toastyle: View {
     
     var state: ToastyleState
     var text: String?
@@ -15,7 +15,7 @@ struct Toastyle: View {
         self._show = show
     }
     
-    var body: some View {
+    public var body: some View {
         VStack {
             Spacer()
             HStack {
