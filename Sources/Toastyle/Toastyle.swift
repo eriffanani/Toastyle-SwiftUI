@@ -1,6 +1,7 @@
 
 import SwiftUI
 
+@available(iOS 14.0, OSX 11, *)
 struct Toastyle: View {
     
     var state: ToastyleState

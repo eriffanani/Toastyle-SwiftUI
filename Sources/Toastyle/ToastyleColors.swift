@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 14.0, OSX 11, *)
 extension Color {
     static let alertWarning = getColor("alertWarning")
     static let alertFailed = getColor("alertFailed")
