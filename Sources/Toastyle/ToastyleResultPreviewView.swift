@@ -16,21 +16,33 @@ struct ToastyleResultPreviewView: View {
     var body: some View {
         ZStack {
             
-            Button {
-                value = 1
-                show = true
-            } label: {
-                Text("Show Toast !!")
+            VStack(spacing: 15) {
+                
+                Button {
+                    value = 1
+                } label: {
+                    Text("Change State")
+                }
+                
+                Button {
+                    show = true
+                } label: {
+                    Text("Show Toast !!")
+                }
+                
             }
             
             Toastyle(
                 text: "This is toast message",
+                //image: "iconExample",
+                icon: "xmark",
                 show: $show
             )
-            .state(value == 0 ? .warning : .success)
+            .state(.success)
             
         }
     }
+    
 }
 
 struct ToastyleResultPreviewView_Previews: PreviewProvider {
