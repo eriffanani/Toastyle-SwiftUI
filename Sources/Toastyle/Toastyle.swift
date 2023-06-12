@@ -324,6 +324,8 @@ public extension Color {
     static let dialogOverlay = getColor("dialogOverlay")
     static let shadow = getColor("shadow")
     
+    static let title = getColor("title")
+    
     private static func getColor(_ name: String) -> Color {
         return Color(name, bundle: .module)
     }
@@ -334,9 +336,9 @@ public extension Color {
 @available(iOS 14.0, OSX 11, *)
 final class ToastyleStateObj: ObservableObject {
     var state: ToastyleState = .plain
-    var textColor: Color = .white
+    var textColor: Color = .title
     var backgroundColor: Color = .alertPlain
-    var iconColor: Color = .white
+    var iconColor: Color = .title
     var cornerRadius: CGFloat = 0
     var corners: UIRectCorner = []
     var cornersValue: CGFloat = 0
@@ -461,5 +463,12 @@ extension Toastyle {
 struct Toastyle_Previews: PreviewProvider {
     static var previews: some View {
         ResultPreview()
+    }
+}
+// Dark
+struct ToastyleDark_Previews: PreviewProvider {
+    static var previews: some View {
+        ResultPreview()
+            .preferredColorScheme(.dark)
     }
 }
