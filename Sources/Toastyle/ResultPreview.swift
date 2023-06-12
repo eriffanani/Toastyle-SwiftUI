@@ -33,13 +33,11 @@ struct ResultPreview: View {
             }
             
             Toastyle(
-                text: "This is toast message asdf asdf asd fas df asdf asd fa sdf as df as df ",
+                text: "This is toast message ",
                 //image: "iconExample",
-                icon: "xmark",
+                //icon: "xmark",
                 show: $show
             )
-            .state(.info)
-            .shadow(true)
             
         }
     }
