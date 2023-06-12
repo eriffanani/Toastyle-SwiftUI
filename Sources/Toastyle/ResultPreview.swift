@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ToastyleResultPreviewView: View {
+struct ResultPreview: View {
     
     @State private var show: Bool = false
     
@@ -33,20 +33,21 @@ struct ToastyleResultPreviewView: View {
             }
             
             Toastyle(
-                text: "This is toast message",
+                text: "This is toast message asdf asdf asd fas df asdf asd fa sdf as df as df ",
                 //image: "iconExample",
                 icon: "xmark",
                 show: $show
             )
-            .state(.success)
+            .state(.info)
+            .shadow(true)
             
         }
     }
     
 }
 
-struct ToastyleResultPreviewView_Previews: PreviewProvider {
+struct ResultPreview_Previews: PreviewProvider {
     static var previews: some View {
-        ToastyleResultPreviewView()
+        ResultPreview()
     }
 }

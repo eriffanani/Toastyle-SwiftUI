@@ -65,10 +65,7 @@ public struct Toastyle: View {
             .padding(.horizontal, 15)
             .background(
                 // MARK: BACKGROUND
-                Capsule()
-                    .fill()
-                    .shadow(color: Color.shadow, radius: 2, y: 1.2)
-                    .foregroundColor(alertCardColor(state: state))
+                backgroundShape(state: state)
             )
             .padding(.bottom, 16)
             .onTapGesture {
@@ -101,6 +98,7 @@ public struct Toastyle: View {
                 }
             }
         }
+        .padding(.horizontal, 15)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
@@ -160,6 +158,33 @@ public struct Toastyle: View {
         }
     }
     
+    @ViewBuilder
+    private func backgroundShape(state: ToastyleStateObj) -> some View {
+        if state.cornerRadius > 0 {
+            RoundedRectangle(
+                cornerRadius: state.cornerRadius
+            )
+            .fill(alertCardColor(state: state))
+            .shadow(color: Color.shadow, radius: state.shadow ? 2 : 0, y: state.shadow ? 1.2 : 0)
+        } else if !state.corners.isEmpty {
+            ToastyleBackground2(
+                radius: state.cornersValue,
+                corners: state.corners
+            )
+            .fill(alertCardColor(state: state))
+            .shadow(color: Color.shadow, radius: state.shadow ? 2 : 0, y: state.shadow ? 1.2 : 0)
+        } else {
+            ToastyleBackground(
+                tl: state.topLeftRadius,
+                tr: state.topRightRadius,
+                bl: state.bottomLeftRadius,
+                br: state.bottomRightRadius
+            )
+            .fill(alertCardColor(state: state))
+            .shadow(color: Color.shadow, radius: state.shadow ? 2 : 0, y: state.shadow ? 1.2 : 0)
+        }
+    }
+    
 }
 
 // MARK: STATE ENUM
@@ -211,6 +236,14 @@ final class ToastyleStateObj: ObservableObject {
     var textColor: Color = .white
     var backgroundColor: Color = .alertPlain
     var iconColor: Color = .white
+    var cornerRadius: CGFloat = 22
+    var corners: UIRectCorner = []
+    var cornersValue: CGFloat = 0
+    var topLeftRadius: CGFloat = 0
+    var topRightRadius: CGFloat = 0
+    var bottomLeftRadius: CGFloat = 0
+    var bottomRightRadius: CGFloat = 0
+    var shadow: Bool = false
 }
 
 
@@ -238,12 +271,53 @@ extension Toastyle {
         return self
     }
     
+    public func shadow(_ shadow: Bool) -> Toastyle {
+        self.state.shadow = shadow
+        return self
+    }
+    
+    public func corner(_ radius: CGFloat) -> Toastyle {
+        self.state.cornerRadius = radius
+        return self
+    }
+    
+    public func corners(_ radius: CGFloat, corners: UIRectCorner) -> Toastyle {
+        self.state.cornersValue = radius
+        self.state.cornerRadius = 0
+        self.state.corners = corners
+        return self
+    }
+    
+    public func topLeftRadius(_ radius: CGFloat) -> Toastyle {
+        self.state.topLeftRadius = radius
+        self.state.cornerRadius = 0
+        return self
+    }
+    
+    public func topRightRadius(_ radius: CGFloat) -> Toastyle {
+        self.state.topRightRadius = radius
+        self.state.cornerRadius = 0
+        return self
+    }
+    
+    public func bottomLeftRadius(_ radius: CGFloat) -> Toastyle {
+        self.state.bottomLeftRadius = radius
+        self.state.cornerRadius = 0
+        return self
+    }
+    
+    public func bottomRightRadius(_ radius: CGFloat) -> Toastyle {
+        self.state.bottomRightRadius = radius
+        self.state.cornerRadius = 0
+        return self
+    }
+    
 }
 
 
 // MARK: PREVIEW
 struct Toastyle_Previews: PreviewProvider {
     static var previews: some View {
-        ToastyleResultPreviewView()
+        ResultPreview()
     }
 }
