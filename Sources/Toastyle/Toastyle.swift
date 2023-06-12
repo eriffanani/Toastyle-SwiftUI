@@ -65,7 +65,7 @@ public struct Toastyle: View {
                                 .renderingMode(.template)
                                 .scaledToFit()
                                 .foregroundColor(iconColor)
-                                .frame(width: 28)
+                                .frame(width: 26)
                         } else {
                             if state.state != .plain {
                                 if icon == nil && image == nil {
@@ -98,7 +98,7 @@ public struct Toastyle: View {
                                 .renderingMode(.template)
                                 .scaledToFit()
                                 .foregroundColor(iconColor)
-                                .frame(width: 28)
+                                .frame(width: 26)
                         } else {
                             // MARK: ICON RIGHT
                             if state.state != .plain {
